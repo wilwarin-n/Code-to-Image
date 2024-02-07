@@ -1,0 +1,46 @@
+<!-- templates/code_input.html -->
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+<style>
+  .code {
+    min-height: calc({{ num_lines }}em * 1.5 + 2 * 1em);
+    min-width: calc({{ max_chars }}ch + 4 * 2em);
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector("select").addEventListener("change", () => {
+      document.querySelector("form").submit();                           
+    });
+  });
+</script>
+<form method="post" action="{{ url_for('save_lang') }}">
+  <div class="controls">
+    <select name="lang">
+      {% for lang_name in lang_list %}
+        <option value="{{ lang_name }}"
+        {% if lang_name == lang %}selected{% endif %}
+        >{{ lang_name }}</option>
+      {% endfor %}
+        
+    </select>
+    <!-- Remove: "Change Style" Button-->
+  </div>
+  
+  <div class="controls">
+    <button formmethod="post" formaction="{{ url_for('post_python') }}">
+      Python 🐍
+    </button>
+    <button formmethod="post" formaction="{{ url_for('save_code') }}">
+      Java ☕
+    </button>
+    <button formmethod="post" formaction="{{ url_for('save_style') }}">
+      Php 💻
+    </button>
+    
+  </div>
+</form>
+{% endblock content %}>
