@@ -1,2 +1,2 @@
-# code-image-generator
+# Code Image Generator :
  
